@@ -18,8 +18,4 @@ class Sale extends Model
     public function payment(): HasOne {
         return $this->hasOne(Payment::class);
     }
-
-    public function membership(): HasOne {
-        return $this->hasOne(Membership::class);
-    }
 }

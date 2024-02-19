@@ -17,8 +17,4 @@ class Payment extends Model
     public function member(): BelongsTo {
         return $this->belongsTo(Member::class);
     }
-
-    public function sale(): BelongsTo {
-        return $this->belongsTo(Sale::class);
-    }
 }

@@ -9,19 +9,18 @@ use Illuminate\Support\Facades\Redirect;
 
 use App\Models\Member;
 
-class MembershipController extends Controller
+class MemberController extends Controller
 {
-    public static function find_member_by_phone(string $phone) {
+    public static function find_one_member_by_phone(string $phone) {
         return Member::where('phone', '=', $phone)->first();
     }
-
     public function create(Request $request)
     {
         $request->validate([
             "new_member_name" => "required",
             "new_phone" => "required|unique:members,phone"
         ], [
-            "new_phone.unique" => "This phone number is already taken."
+            "new_phone.unique" => "This phone number is already in use."
         ]);
         $new_member = new Member;
         $new_member->full_name = $request->new_member_name;

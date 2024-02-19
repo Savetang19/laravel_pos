@@ -12,8 +12,8 @@ class Item extends Model
     use HasFactory;
 
     protected $attributes = [
-        'description' => "lorem ipsum",
-        'stockAmount' => 0,
+        'description' => "description",
+        'stock' => 0,
         'price' => 0,
     ];
 

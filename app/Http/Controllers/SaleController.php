@@ -25,7 +25,7 @@ class SaleController extends Controller
         return Sale::where('employee_id', '=', $request->user()->id)->orderBy('id', 'DESC')->first();
     }
 
-    public static function update_payment_status(string $status, int $sale_id) {
+    public static function update_sale_payment_status(string $status, int $sale_id) {
         $sale = Sale::where('id', '=', $sale_id)->first();
         $payment = $sale->payment;
 
@@ -34,7 +34,7 @@ class SaleController extends Controller
         $payment->save();
     }
 
-    public static function create_empty_payment(int $id)
+    public static function create_blank_payment(int $id)
     {
         $new_payment = new Payment;
         $new_payment->sale_id = $id;
@@ -84,7 +84,7 @@ class SaleController extends Controller
         return "confirm";
     }
 
-    public function add_item(Request $request): RedirectResponse
+    public function addItem(Request $request): RedirectResponse
     {
         $request->validate([
             'item_id' => [Rule::In(Item::where('id', '=', $request->item_id)->pluck('id')->all())],
@@ -114,14 +114,14 @@ class SaleController extends Controller
         return Redirect::route('dashboard')->with('status', 'Item added.');
     }
 
-    public function delete_item(Request $request): RedirectResponse
+    public function deleteItem(Request $request): RedirectResponse
     {
         $sales_line_item = SalesLineItem::where('id', '=', $request->id)->first();
         $sales_line_item->delete();
         return Redirect::route('dashboard')->with('status', 'Item removed.');
     }
 
-    public function update_payment(Request $request)
+    public function updatePayment(Request $request)
     {
         $member = MemberController::find_one_member_by_phone($request->phone);
         if($member == null or $request->phone == "99999") {
@@ -136,9 +136,8 @@ class SaleController extends Controller
         return Redirect::route('payment')->with('status', 'Member added.');
     }
 
-    public function destroy_payment(Request $request)
+    public function destroyPayment(Request $request)
     {
         return "confirm";
     }
-
 }

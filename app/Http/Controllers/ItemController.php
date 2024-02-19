@@ -16,11 +16,11 @@ use App\Models\Item;
 class ItemController extends Controller
 {
     public static function get_all_items() {
-        return Item::all();
+        return Item::get();
     }
 
     public static function get_available_items() {
-        return Item::where('stockAmount', '>', 0)->get();
+        return Item::where('stock', '>', 0)->get();
     }
 
     public function create(Request $request): RedirectResponse
@@ -39,7 +39,7 @@ class ItemController extends Controller
 
         $item = new Item;
         $item->name = $request->new_item_name;
-        $item->stockAmount = $request->new_stock;
+        $item->stock = $request->new_stock;
         $item->price = $request->new_price;
 
         $item->save();
@@ -51,13 +51,13 @@ class ItemController extends Controller
     {
         $request->validate([
             'name' => 'required',
-            'stockAmount' => 'required|numeric',
+            'stock' => 'required|numeric',
             'price' => 'required|numeric',
         ]);
 
         $item = Item::where('id', '=', $request->item_id)->first();
         $item->name = $request->name;
-        $item->stockAmount = $request->stockAmount;
+        $item->stock = $request->stock;
         $item->price = $request->price;
         $item->save();
 

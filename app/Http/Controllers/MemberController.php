@@ -14,6 +14,11 @@ class MemberController extends Controller
     public static function find_one_member_by_phone(string $phone) {
         return Member::where('phone', '=', $phone)->first();
     }
+
+    public static function get_all_members() {
+        return Member::all();
+    }
+
     public function create(Request $request)
     {
         $request->validate([

@@ -13,7 +13,28 @@
                         @include('messages.status-msg-display')
                         @include('messages.error-msg-display')
                     </div>
-                    
+                    <div class="text-l relative overflow-x-auto">
+                    <table class="w-full text-left text-gray-500 dark:text-gray-400">
+                            <thead class="text-xs text-left text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
+                                <tr>
+                                    <th class="px-6 py-4">
+                                        Member Name
+                                    </th>
+                                    <th class="px-6 py-4">
+                                        Phone Number
+                                    </th>
+                                </tr>
+                            </thead>
+                            <tbody class="text-left">
+                            @foreach($members as $member)
+                                <tr>
+                                    <td class="px-6 py-4">{{ $member->full_name }}</td>
+                                    <td class="px-6 py-4">{{ $member->phone }}</td>
+                                </tr>
+                            @endforeach
+                            </tbody>
+                        </table>
+                    </div>
                     <div class="mt-4">
                         @include('member.member-create-form')
                     </div>

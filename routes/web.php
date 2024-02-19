@@ -50,7 +50,7 @@ Route::get('/confirm_pay', function (Request $request) {
     }
     $sale = SaleController::get_latest_sale_by_employee($request);
     $member = $sale->payment->member;
-    return view('payment')->with('grand_total', $sale->payment->total)->with('sale_id', $sale->id)->with('member', $member);
+    return view('payment')->with('total_price', $sale->payment->total)->with('sale_id', $sale->id)->with('member', $member);
 })->middleware(['auth', 'verified'])->name('payment');
 
 Route::get('/stock', function (Request $request) {
@@ -61,7 +61,7 @@ Route::get('/stock', function (Request $request) {
 })->middleware(['auth', 'verified'])->name('stock');
 
 Route::get('/member', function (Request $request) {
-    return view('member');
+    return view('member')->with('members', MemberController::get_all_members());
 })->middleware(['auth', 'verified'])->name('member');
 
 Route::middleware('auth')->group(function () {

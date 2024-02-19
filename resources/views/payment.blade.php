@@ -12,12 +12,14 @@
             <div class="bg-white dark:bg-gray-800 overflow-hidden shadow-sm sm:rounded-lg">
                 <div class="p-6 text-gray-900 dark:text-gray-100">
                     <div class="flex items-center gap-4 mt-10 ml-10 text-l">
+                        <div class="text-red-600">
                         @include('messages.error-msg-display')
+                        </div>
                         @include('messages.status-msg-display')
                     </div>
 
                     <div class="py-4 mt-3 text-xl font-bold">
-                        Grand Total: {{ $grand_total }} baht
+                        Total price: {{ $total_price }} baht
                     </div>
                     @if($member->full_name == 'temp')
                     <form action="{{ route('sale.updatePayment') }}" method="POST" class="form-horizontal">

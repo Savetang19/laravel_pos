@@ -22,7 +22,7 @@
                         Total price: {{ $total_price }} baht
                     </div>
                     @if($member->full_name == 'temp')
-                    <form action="{{ route('sale.updatePayment') }}" method="POST" class="form-horizontal">
+                    <form action="{{ route('sale.update_payment') }}" method="POST" class="form-horizontal">
                     {{ csrf_field() }}
                     @method("patch")
                     <div class="flex py-4">

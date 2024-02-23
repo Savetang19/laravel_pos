@@ -1,6 +1,6 @@
 <div class="panel-body mt-10">
 
-    <form action="{{ route('sale.addItem') }}" method="POST" class="form-horizontal">
+    <form action="{{ route('sale.add_sale_line_item') }}" method="POST" class="form-horizontal">
         {{ csrf_field() }}
 
         <input type="hidden" name="sale_id" value="{{ $sale->id }}">

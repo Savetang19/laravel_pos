@@ -46,7 +46,7 @@ Route::get('/dashboard', function (Request $request) {
 Route::get('/confirm_pay', function (Request $request) {
     $sale = SaleController::get_latest_sale_by_employee($request);
     if($sale->payment->payment_type == 'unfinished'){
-        SaleController::update_sale_payment_status('pending', $sale->id);
+        SaleController::update_payment_status('pending', $sale->id);
     }
     $sale = SaleController::get_latest_sale_by_employee($request);
     $member = $sale->payment->member;
@@ -75,9 +75,9 @@ Route::middleware('auth')->group(function () {
 
     Route::get('/sale', [SaleController::class, 'create'])->name('sale.create');
     Route::patch('/sale', [SaleController::class, 'confirm'])->name('sale.confirm');
-    Route::post('/add_item', [SaleController::class, 'addItem'])->name('sale.addItem');
-    Route::delete('/delete_item', [SaleController::class, 'deleteItem'])->name('sale.deleteItem');
-    Route::patch('/payment', [SaleController::class, 'updatePayment'])->name('sale.updatePayment');
+    Route::post('/add_sale_line_item', [SaleController::class, 'add_sale_line_item'])->name('sale.add_sale_line_item');
+    Route::delete('/delete_sale_line_item', [SaleController::class, 'delete_sale_line_item'])->name('sale.delete_sale_line_item');
+    Route::patch('/payment', [SaleController::class, 'update_payment'])->name('sale.update_payment');
 
     Route::post('/member', [MemberController::class, 'create'])->name('member.create');
 });

@@ -38,7 +38,7 @@
                                     <td class="px-6 py-4">{{ $sale_item->quantity }}</td>
                                     <td class="px-6 py-4">{{ $sale_item->total }}</td>
                                     <td class="px-6 py-4 text-center">
-                                        <form action="{{ route('sale.deleteItem') }}" method="POST" class="form-horizontal">
+                                        <form action="{{ route('sale.delete_sale_line_item') }}" method="POST" class="form-horizontal">
                                             @csrf
                                             @method('delete')
 

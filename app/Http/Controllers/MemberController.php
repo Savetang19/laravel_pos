@@ -11,7 +11,7 @@ use App\Models\Member;
 
 class MemberController extends Controller
 {
-    public static function find_one_member_by_phone(string $phone) {
+    public static function find_member_by_phone(string $phone) {
         return Member::where('phone', '=', $phone)->first();
     }
 
